@@ -1,0 +1,25 @@
+.active { color: green }
+.error { color: red }
+
+.indicator {
+  display: flex;
+  justify-content: space-between;
+}
+
+.indicator-item {
+  flex-grow: 0.33;
+  height: 2px;
+  background-color: gray;
+}
+
+.weak {
+  background-color: red;
+}
+
+.medium {
+  background-color: yellowgreen;
+}
+
+.strong {
+  background-color: green;
+}
