@@ -2,13 +2,13 @@ const toggleIndicatorClasses = (element, expression, className) => {
   element.classList.toggle(className, expression);
 };
 
-const toggleValidClassesInElement = (element, expression) => {
-  element.classList.toggle('active', expression);
-  element.classList.toggle('error', !expression);
+const togglePasswordDescriptionStyle = (element, expression) => {
+  element.classList.toggle('indicator-description-is--valid', expression);
+  element.classList.toggle('indicator-description-is--invalid', !expression);
   return expression;
 };
 
 export default {
   toggleIndicatorClasses,
-  toggleValidClassesInElement,
+  togglePasswordDescriptionStyle,
 };

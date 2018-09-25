@@ -1,11 +1,11 @@
 import { STYLED } from '..';
 import { REGEX, SELECTORS } from '../../constants';
 
-const { toggleValidClassesInElement, toggleIndicatorClasses } = STYLED;
+const { togglePasswordDescriptionStyle, toggleIndicatorClasses } = STYLED;
 const { hasNumberRegex, hasUpperCaseRegex } = REGEX;
 const {
-  inputPassword, strengthCharacter, strengthUppercase, strengthNumber,
-  weakIndicator, mediumIndicator, strongIndicator,
+  inputPassword, indicator,
+  strengthCharacter, strengthUppercase, strengthNumber,
 } = SELECTORS;
 
 const minimumCharacter = text => text.length >= 6;
@@ -16,22 +16,21 @@ const indicatorsStrength = indicators => indicators.filter(valid => valid).lengt
 
 const strengthIndicatorStyle = (text) => {
   const strengthScore = indicatorsStrength([
-    toggleValidClassesInElement(strengthCharacter, minimumCharacter(text)),
-    toggleValidClassesInElement(strengthUppercase, hasUpperCase(text)),
-    toggleValidClassesInElement(strengthNumber, hasNumber(text)),
+    togglePasswordDescriptionStyle(strengthCharacter, minimumCharacter(text)),
+    togglePasswordDescriptionStyle(strengthUppercase, hasUpperCase(text)),
+    togglePasswordDescriptionStyle(strengthNumber, hasNumber(text)),
   ]);
 
-  toggleIndicatorClasses(weakIndicator, strengthScore === 1, 'weak');
-  toggleIndicatorClasses(inputPassword, strengthScore === 1, 'weak');
+  toggleIndicatorClasses(indicator, strengthScore === 1, 'weak-indicator');
+  toggleIndicatorClasses(inputPassword, strengthScore === 1, 'input-error');
 
-  toggleIndicatorClasses(weakIndicator, strengthScore === 2, 'medium');
-  toggleIndicatorClasses(mediumIndicator, strengthScore === 2, 'medium');
-  toggleIndicatorClasses(inputPassword, strengthScore === 2, 'medium');
+  toggleIndicatorClasses(indicator, strengthScore === 2, 'medium-indicator');
+  toggleIndicatorClasses(inputPassword, strengthScore === 2, 'input-warning');
 
-  toggleIndicatorClasses(weakIndicator, strengthScore === 3, 'strong');
-  toggleIndicatorClasses(mediumIndicator, strengthScore === 3, 'strong');
-  toggleIndicatorClasses(strongIndicator, strengthScore === 3, 'strong');
-  toggleIndicatorClasses(inputPassword, strengthScore === 3, 'strong');
+  toggleIndicatorClasses(indicator, strengthScore === 3, 'strong-indicator');
+  toggleIndicatorClasses(inputPassword, strengthScore === 3, 'input-success');
+
+  return strengthScore === 3;
 };
 
 const strength = text => strengthIndicatorStyle(text);

@@ -4,7 +4,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './app/app.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: 'app.bundle.js',
   },
   module: {
@@ -38,6 +38,8 @@ module.exports = {
         }, {
           loader: 'css-loader',
         }, {
+          loader: 'resolve-url-loader',
+        }, {
           loader: 'sass-loader',
           options: {
             includePaths: ['app/styles'],
@@ -45,6 +47,28 @@ module.exports = {
           },
         }],
       },
+      // {
+      //   test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
+      //   use: [{
+      //     loader: 'url-loader',
+      //     options: {
+      //       name: './assets/fonts/[name].[ext]',
+      //     },
+      //   }],
+      // },
+      // {
+      // {
+      //   test: /\.(png|woff|woff2|eot|ttf|svg|eot)$/,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //       options: {
+      //         name: '[name].[ext]',
+      //         outputPath: 'fonts/',
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   },
   plugins: [

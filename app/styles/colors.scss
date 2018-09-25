@@ -1,0 +1,37 @@
+$colours: (
+  'support': #E5E5E5,
+  'coral-light': #F79682,
+  'medium-gold': #F7BC1C,
+  'sea-green': #1FE6A8,
+  'primary': #17D398,
+  'white': #fff,
+  'gray': #696D8C,
+  'gray-line': #B6B9D0,
+  'dark': #312F4F,
+  'light': #F2F2F2,
+  'neutral': #EAEAF4,
+);
+
+@each $map in $colours {
+  $name: nth($map, 1);
+  $map: map-get($colours, $name);
+
+  @each $colour in $map {
+    .c-#{$name} {
+      color: $colour;
+    }
+
+    .bg-#{$name} {
+      background-color: $colour;
+    }
+  }
+}
+
+@function color($key) {
+  @if map-has-key($colours, $key) {
+    @return map-get($colours, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $colors.";
+  @return null;
+}
