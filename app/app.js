@@ -1,13 +1,39 @@
 import { Observable } from './patterns';
 import { SELECTORS } from './constants';
-import { STRENGTH_PASSWORD } from './helpers';
+import { STRENGTH_PASSWORD, VALIDATOR, sendData } from './helpers';
 
 import './styles/index.scss';
 
-const { inputPassword } = SELECTORS;
+const {
+  account,
+  accountName,
+  accountEmail,
+  accountPassword,
+  accountConfirmPassword,
+} = SELECTORS;
+
+const {
+  validateName,
+  validateEmail,
+  validatePassword,
+  validateConfirmPassword,
+} = VALIDATOR;
+
 const { strength } = STRENGTH_PASSWORD;
 
-const headingObserver = new Observable();
-headingObserver.subscribe(strength);
+const accountPasswordObserver = new Observable();
+const accountNameObserver = new Observable();
+const accountEmailObserver = new Observable();
+const accountConfirmPasswordObserver = new Observable();
 
-inputPassword.addEventListener('input', ({ target }) => headingObserver.notify(target.value));
+accountNameObserver.subscribe(validateName);
+accountEmailObserver.subscribe(validateEmail);
+accountPasswordObserver.subscribe(validatePassword);
+accountPasswordObserver.subscribe(strength);
+accountConfirmPasswordObserver.subscribe(validateConfirmPassword);
+
+accountName.addEventListener('input', ({ target }) => accountNameObserver.notify(target.value));
+accountEmail.addEventListener('input', ({ target }) => accountEmailObserver.notify(target.value));
+accountPassword.addEventListener('input', ({ target }) => accountPasswordObserver.notify(target.value));
+accountConfirmPassword.addEventListener('input', ({ target }) => accountConfirmPasswordObserver.notify(target.value));
+account.addEventListener('submit', sendData);

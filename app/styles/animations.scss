@@ -1,0 +1,15 @@
+.slideInRight {
+  animation-name: slideInRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(20%);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0);
+  }
+} 

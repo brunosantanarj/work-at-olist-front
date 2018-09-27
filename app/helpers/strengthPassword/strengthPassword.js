@@ -1,10 +1,10 @@
 import { STYLED } from '..';
 import { REGEX, SELECTORS } from '../../constants';
 
-const { togglePasswordDescriptionStyle, toggleIndicatorClasses } = STYLED;
+const { togglePasswordDescriptionStyle, toggleStyle } = STYLED;
 const { hasNumberRegex, hasUpperCaseRegex } = REGEX;
 const {
-  inputPassword, indicator,
+  accountPassword, indicator,
   strengthCharacter, strengthUppercase, strengthNumber,
 } = SELECTORS;
 
@@ -21,14 +21,14 @@ const strengthIndicatorStyle = (text) => {
     togglePasswordDescriptionStyle(strengthNumber, hasNumber(text)),
   ]);
 
-  toggleIndicatorClasses(indicator, strengthScore === 1, 'weak-indicator');
-  toggleIndicatorClasses(inputPassword, strengthScore === 1, 'input-error');
+  toggleStyle(indicator, strengthScore <= 1, 'weak-indicator');
+  toggleStyle(accountPassword, strengthScore <= 1, 'input-error');
 
-  toggleIndicatorClasses(indicator, strengthScore === 2, 'medium-indicator');
-  toggleIndicatorClasses(inputPassword, strengthScore === 2, 'input-warning');
+  toggleStyle(indicator, strengthScore === 2, 'medium-indicator');
+  toggleStyle(accountPassword, strengthScore === 2, 'input-warning');
 
-  toggleIndicatorClasses(indicator, strengthScore === 3, 'strong-indicator');
-  toggleIndicatorClasses(inputPassword, strengthScore === 3, 'input-success');
+  toggleStyle(indicator, strengthScore === 3, 'strong-indicator');
+  toggleStyle(accountPassword, strengthScore === 3, 'input-success');
 
   return strengthScore === 3;
 };

@@ -4,8 +4,13 @@
 @import 'colors';
 @import 'layout';
 @import 'main';
+@import 'animations';
 
 body {
-  font: 16px SanFranciso-Regular;
+  font: 16px/1 SanFranciso-Regular;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   @extend .bg-support;
 }

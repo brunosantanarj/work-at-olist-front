@@ -1,14 +1,26 @@
-const toggleIndicatorClasses = (element, expression, className) => {
+const toggleStyle = (element, expression, className) => {
   element.classList.toggle(className, expression);
 };
 
-const togglePasswordDescriptionStyle = (element, expression) => {
-  element.classList.toggle('indicator-description-is--valid', expression);
-  element.classList.toggle('indicator-description-is--invalid', !expression);
+const toggleStyleWithExpression = ({ valid, invalid }, element, expression) => {
+  element.classList.toggle(valid, expression);
+  element.classList.toggle(invalid, !expression);
   return expression;
 };
 
+const togglePasswordDescriptionStyle = (element, expression) => toggleStyleWithExpression({
+  valid: 'indicator-description-is--valid',
+  invalid: 'indicator-description-is--invalid',
+}, element, expression);
+
+const setInputStyleValidation = (element, expression) => toggleStyleWithExpression({
+  valid: 'input-success',
+  invalid: 'input-error',
+}, element, expression);
+
 export default {
-  toggleIndicatorClasses,
+  toggleStyle,
   togglePasswordDescriptionStyle,
+  toggleStyleWithExpression,
+  setInputStyleValidation,
 };
