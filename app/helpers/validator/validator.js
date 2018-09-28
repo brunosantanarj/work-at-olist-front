@@ -11,7 +11,6 @@ const {
 } = SELECTORS;
 
 const { hasEmail } = REGEX;
-const { strengthIndicatorStyle } = STRENGTH_PASSWORD;
 const { setInputStyleValidation, toggleStyle } = STYLED;
 
 const data = {
@@ -61,7 +60,7 @@ const fieldValidator = (value, field, validationExpression, element) => {
 
 const validateName = value => fieldValidator(value, 'name', value.trim(), accountName);
 const validateEmail = value => fieldValidator(value, 'email', hasEmail.test(value), accountEmail);
-const validatePassword = value => fieldValidator(value, 'password', strengthIndicatorStyle(value), accountPassword);
+const validatePassword = value => fieldValidator(value, 'password', STRENGTH_PASSWORD.strengthIndicatorStyle(value), accountPassword);
 const validateConfirmPassword = value => fieldValidator(value, 'confirmPassword', value === data.password.value, accountConfirmPassword);
 
 export default {

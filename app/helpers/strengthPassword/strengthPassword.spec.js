@@ -4,7 +4,6 @@ const {
   minimumCharacter,
   hasUpperCase,
   hasNumber,
-  strengthIndicatorStyle,
   indicatorsStrength,
 } = STRENGTH_PASSWORD;
 
@@ -38,7 +37,13 @@ describe('strength password', () => {
     expect(score).toBe(1);
   });
 
-  test('should have indicators strength equal a weak', () => {
-    const score = strengthIndicatorStyle('H');
+  test('should have indicators strength equal a medium', () => {
+    const score = indicatorsStrength([true, false, true]);
+    expect(score).toBe(2);
+  });
+
+  test('should have indicators strength equal a medium', () => {
+    const score = indicatorsStrength([true, true, true]);
+    expect(score).toBe(3);
   });
 });
