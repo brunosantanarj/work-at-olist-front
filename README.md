@@ -47,9 +47,9 @@ This command through the webpack generates the dist folder, which contains all b
 
 ## Tests
 
-[Jest](https://jestjs.io/) with [Puppeter](https://github.com/GoogleChrome/puppeteer) were used in the tests of this project.
+[Jest](https://jestjs.io/) with [Puppeteer](https://github.com/GoogleChrome/puppeteer) were used in the tests of this project.
 
-In the project, there are unit tests and end-to-end.
+In the project, there are unit tests and UI tests.
 
 ```shell
 yarn test
