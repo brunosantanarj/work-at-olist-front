@@ -31,6 +31,6 @@ accountConfirmPasswordObserver.subscribe(validateConfirmPassword);
 
 accountName.addEventListener('input', ({ target }) => accountNameObserver.notify(target.value));
 accountEmail.addEventListener('input', ({ target }) => accountEmailObserver.notify(target.value));
-accountPassword.addEventListener('input', ({ target }) => accountPasswordObserver.notify(target.value));
+accountPassword.addEventListener('input', ({ target }) => accountPasswordObserver.notify(target));
 accountConfirmPassword.addEventListener('input', ({ target }) => accountConfirmPasswordObserver.notify(target.value));
 account.addEventListener('submit', sendData);

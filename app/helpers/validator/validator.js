@@ -5,7 +5,6 @@ import { Observable } from '../../patterns';
 const {
   accountName,
   accountEmail,
-  accountPassword,
   accountConfirmPassword,
   submitButton,
 } = SELECTORS;
@@ -50,17 +49,19 @@ configObserver.subscribe(validForm);
 const notify = () => configObserver.notify(data);
 
 const fieldValidator = (value, field, validationExpression, element) => {
+  console.time();
   data[field] = {
     isValid: Boolean(validationExpression),
     value,
   };
   setInputStyleValidation(element, validationExpression);
   notify();
+  console.timeEnd();
 };
 
 const validateName = value => fieldValidator(value, 'name', value.trim(), accountName);
 const validateEmail = value => fieldValidator(value, 'email', hasEmail.test(value), accountEmail);
-const validatePassword = value => fieldValidator(value, 'password', STRENGTH_PASSWORD.strengthIndicatorStyle(value), accountPassword);
+const validatePassword = target => fieldValidator(target.value, 'password', STRENGTH_PASSWORD.strengthIndicatorStyle(target.value), target);
 const validateConfirmPassword = value => fieldValidator(value, 'confirmPassword', value === data.password.value, accountConfirmPassword);
 
 export default {
@@ -70,3 +71,6 @@ export default {
   validateConfirmPassword,
   data,
 };
+
+// input password default approach = default: 0.1650390625ms
+// input passoword target approach is more fast = default: 0.157958984375ms
