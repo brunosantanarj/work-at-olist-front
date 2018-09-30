@@ -1,6 +1,6 @@
 import { Observable } from './patterns';
 import { SELECTORS } from './constants';
-import { STRENGTH_PASSWORD, VALIDATOR, sendData } from './helpers';
+import { VALIDATOR, sendData } from './helpers';
 
 import './styles/index.scss';
 
@@ -19,8 +19,6 @@ const {
   validateConfirmPassword,
 } = VALIDATOR;
 
-const { strength } = STRENGTH_PASSWORD;
-
 const accountPasswordObserver = new Observable();
 const accountNameObserver = new Observable();
 const accountEmailObserver = new Observable();
@@ -29,7 +27,6 @@ const accountConfirmPasswordObserver = new Observable();
 accountNameObserver.subscribe(validateName);
 accountEmailObserver.subscribe(validateEmail);
 accountPasswordObserver.subscribe(validatePassword);
-accountPasswordObserver.subscribe(strength);
 accountConfirmPasswordObserver.subscribe(validateConfirmPassword);
 
 accountName.addEventListener('input', ({ target }) => accountNameObserver.notify(target.value));
